@@ -1,9 +1,12 @@
+#from turtle import pos
+import pandas as pd
+from discord.ext import commands
+from dotenv import load_dotenv
+import discord
 import asyncio
 import os
 import random
-import discord
-from dotenv import load_dotenv
-from discord.ext import commands
+#from turtle import pos
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -92,15 +95,27 @@ bot = commands.Bot(command_prefix='$')
 
 # #     await ctx.send(f'{member.mention} has sent **{counter}** messages in this server.')
 
+global currentMemberCopying
+global possibleSayings
+
+
 @bot.command(name='getHistoryOf')
 async def history(ctx, user):
     user_id = int(user[3:-1])
     h = await ctx.channel.history(limit=9999).flatten()
-    c = [message.content for message in h if message.author.id == user_id]
-    print([message.author.id for message in h])
-    print(user_id)
-    print(c)
+    global possibleSayings
+    global currentMemberCopying
+
+    possibleSayings = [
+        message.content for message in h if message.author.id == user_id]
+    currentMemberCopying = user
+
     await ctx.send(f"Scraped the messages of {user}.")
+
+
+@bot.command(name='talk')
+async def talk(ctx):
+    await ctx.send(random.choice(possibleSayings))
 
 # client.run(TOKEN)
 bot.run(TOKEN)

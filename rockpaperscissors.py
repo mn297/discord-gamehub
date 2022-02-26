@@ -8,7 +8,7 @@ async def rockpaperscissorscomputer(userin):
     bot = commands.Bot(command_prefix='$')
 
     @bot.command(name='rps rock')
-    async def rockpaperscissorscomputer(ctx):
+    async def rpsrock(ctx):
 
         com = random.randrange(1,3)
         if com == 1:

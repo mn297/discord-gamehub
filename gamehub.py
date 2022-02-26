@@ -92,11 +92,15 @@ bot = commands.Bot(command_prefix='$')
 
 # #     await ctx.send(f'{member.mention} has sent **{counter}** messages in this server.')
 
-@bot.command(name='history')
-async def history(ctx):
+@bot.command(name='getHistoryOf')
+async def history(ctx, user):
+    user_id = int(user[3:-1])
     h = await ctx.channel.history(limit=9999).flatten()
-    c = [message.content for message in h]
+    c = [message.content for message in h if message.author.id == user_id]
+    print([message.author.id for message in h])
+    print(user_id)
     print(c)
+    await ctx.send(f"Scraped the messages of {user}.")
 
 # client.run(TOKEN)
 bot.run(TOKEN)

@@ -3,6 +3,7 @@ import discord
 import os
 from discord.ext import commands
 
+
 async def rockpaperscissorscomputer(ctx):
     out = ""
     bot = commands.Bot(command_prefix='$')
@@ -10,15 +11,13 @@ async def rockpaperscissorscomputer(ctx):
     @bot.command(name='rps rock')
     async def rpsrock(ctx):
 
-        com = random.randrange(1,3)
+        com = random.randrange(1, 3)
         if com == 1:
             out = "Tie"
         elif com == 2:
             out = "I choose scissors. You win!"
         elif com == 3:
             out = "I choose paper. I win!"
-        
+
         await ctx.send(out)
     await ctx.send(out)
-    
-   

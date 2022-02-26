@@ -1,4 +1,4 @@
-#from turtle import pos
+# from turtle import pos
 import pandas as pd
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -6,12 +6,13 @@ import discord
 import asyncio
 import os
 import random
-#from turtle import pos
+# from turtle import pos
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+global bot
 bot = commands.Bot(command_prefix='$')
-#client = discord.Client()
+# client = discord.Client()
 
 
 # @client.event
@@ -106,14 +107,15 @@ async def history(ctx, user):
     global possibleSayings
     global currentMemberCopying
 
+    currentMemberCopying = h[0].author.name
     possibleSayings = [
         message.content for message in h if message.author.id == user_id]
-    currentMemberCopying = user
 
     await ctx.send(f"Scraped the messages of {user}.")
+    await bot.user.edit(username=currentMemberCopying)
 
 
-@bot.command(name='talk')
+@ bot.command(name='talk')
 async def talk(ctx):
     await ctx.send(random.choice(possibleSayings))
 

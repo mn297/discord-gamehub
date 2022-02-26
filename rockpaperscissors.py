@@ -3,7 +3,7 @@ import discord
 import os
 from discord.ext import commands
 
-def rockpaperscissorscomputer():
+async def rockpaperscissorscomputer(ctx):
     out = ""
     bot = commands.Bot(command_prefix='$')
 
@@ -19,5 +19,6 @@ def rockpaperscissorscomputer():
             out = "I choose paper. I win!"
         
         await ctx.send(out)
-
+    await ctx.send(out)
+    
    

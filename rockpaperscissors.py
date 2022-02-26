@@ -3,7 +3,7 @@ import discord
 import os
 from discord.ext import commands
 
-async def rockpaperscissorscomputer(userin):
+async def rockpaperscissorscomputer():
     client = discord.Client()
     bot = commands.Bot(command_prefix='$')
 

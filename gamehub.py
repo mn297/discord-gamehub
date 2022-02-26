@@ -6,9 +6,9 @@ from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-client = discord.Client()
+
 bot = commands.Bot(command_prefix='$')
-@bot.command(name='rps rock')
+@bot.command(name='rps_rock')
 async def rpsrock(ctx):
 
     com = random.randrange(1,3)
@@ -22,5 +22,5 @@ async def rpsrock(ctx):
     await ctx.send(out)
     
     
-client.run(TOKEN)
+
 bot.run(TOKEN)
